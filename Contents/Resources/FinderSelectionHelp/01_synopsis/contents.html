@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <!-- InstanceBegin template="../../../../_Templates/Help_Contetns_enTitle.dwt" -->
+
+    <head>
+      <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+      <title>Synopsis</title>
+      <meta name="keywords" content="FinderSelection" />
+      <!-- #BeginHeadLocked "" -->
+        <link href="../02_usage/assets/default2.css" type="text/css" rel="styleSheet" />
+        <link href="../02_usage/assets/help.css" type="text/css" rel="stylesheet" media="screen" />
+        <script type="text/javascript" language="JavaScript1.4" src="../02_usage/assets/SmartHeader.js"></script>
+      <!-- #EndHeadLocked -->
+    </head>
+
+    <body>
+      <p id="smartheader" style="visibility:hidden"><!-- InstanceBeginEditable name="SmartHeader" --><a href="index.html">FinderSelection Help</a> <!-- InstanceEndEditable --></p>
+      <!-- InstanceBeginEditable name="Body" -->
+        <h1>FinderSelection</h1>
+        <p>FinderSelection は Finder で選択されている物から条件にあったファイル/フォルダを取得するライブラリ/モジュールです。</p>
+        <p>AppleScript をスクリプトメニューや何らかのランチャーから起動して、Finderで選択されている物を取得して処理を行う・・・よくある AppleScript だと思います。「Finder で選択されているものを取得する」という処理は一見簡単ですが、次のようなエラー処理を含めて気の利いた処理を行うのは結構大変です。</p>
+        <ul>
+          <li>Finder の選択物の中から必要なもの（種類、ファイルタイプ、拡張子 で指定）だけを選び出す。</li>
+          <li>選択物中にエイリアスファイルが含まれていたら、オリジナルへの参照を取得してオリジナルが条件に該当するか調べます。</li>
+          <li>選択物がなかったり条件に該当するものがなかったら、ファイル選択ダイアログを開く。</li>
+          <li>Applet/Droplet の場合、Finder からダブルクリックによって起動されたら、ファイル選択ダイアログ を開く。</li>
+        </ul>
+        <p>FinderSelection はこのような複雑な処理をほんの数行で実現できます。</p>
+        <h2 lang="en"><a name="why"></a>Why FinderSlection ?</h2>
+        <p>例えば、ワープロでフォントの変更を行う場合、テキストを選択して、それからメニューからフォントを選びますよね。そしてその結果が選択されているものにダイレクトに反映されますね。何かをするのに、いちいちダイアログが開かれるのでは無く、メニューの操作がすぐに反映されるのは Direct Operaion とかというのでしたっけ？どっかで、そんなことを読んだ記憶があります。まあ、ここではそう呼びましょう。いずれにしても、ダイアログがいちいち開かれるのはうっとうしいですよね。</p>
+        <p>AppleScript の主たる目的の一つは、あるアプリケーションもしくは Macintosh そのものに新たなコマンドを付け加えることであると思います。したがって、スクリプトもいたずらにダイアログを開かず、Direct Operation を旨とすべきではないでしょうか。FinderSelection はエラー処理の一部としてファイル選択ダイアログを開くこともありますが、あくまで Direct Operation を行うスクリプトの基本的な部分を提供するためのライブラリです。FinderSelection が提供しているだけのエラー処理とフィルター機能を、実装するのは大変だと思いますので、ぜひ一度お試しください。</p>
+        <p>この FinderSelection が使いやすいスクリプトの作成の一助になれば幸いです。</p>
+      <!-- InstanceEndEditable -->
+      <div class="footer">
+        <p>This page was last built on <csobj format="MedDate" h="12" region="0" t="DateTime" w="84">Wed, Apr 21, 2010</csobj> ; <csobj format="LongTime" h="12" region="0" t="DateTime" w="58">10:44:33 AM</csobj> . Thanks for checking it out!</p>
+      </div>
+    </body>
+
+  <!-- InstanceEnd -->
+
+</html>

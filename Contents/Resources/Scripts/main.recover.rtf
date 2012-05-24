@@ -1,0 +1,4170 @@
+{\rtf1\ansi\ansicpg932\cocoartf1038\cocoasubrtf360
+{\fonttbl\f0\fnil\fcharset128 Osaka;\f1\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red255\green0\blue0;\red0\green0\blue255;\red76\green78\blue78;
+\red64\green128\blue0;}
+\vieww10500\viewh10200\viewkind0
+\deftab480
+\pard\pardeftab480\ql\qnatural\pardirnatural
+
+\f0\fs24 \cf2 property
+\f1 \cf0  
+\f0 \cf3 name
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 "FinderSelection"
+\f1 \
+
+\f0 (*\cf4 !@title FinderSelection Reference\
+* Version : 2.0.8b\
+* Author : Tetsuro KURITA ((<tkurita@mac.com>))\
+\
+Finder \'82\'cc\'91\'49\'91\'f0\'8d\'80\'96\'da\'82\'f0\'8e\'e6\'93\'be\'82\'b7\'82\'e9 AppleScript \'83\'82\'83\'57\'83\'85\'81\'5b\'83\'8b\'82\'c5\'82\'b7\'81\'42\'88\'c8\'89\'ba\'82\'cc\'82\'e6\'82\'a4\'82\'c8\'8b\'40\'94\'5c\'82\'f0\'8a\'c8\'95\'d6\'82\'c9\'8d\'73\'82\'a6\'82\'dc\'82\'b7\'81\'42\
+\
+* Finder \'82\'cc\'91\'49\'91\'f0\'95\'a8\'82\'cc\'92\'86\'82\'a9\'82\'e7\'95\'4b\'97\'76\'82\'c8\'82\'e0\'82\'cc\'82\'be\'82\'af\'82\'f0\'91\'49\'82\'d1\'8f\'6f\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+* \'91\'49\'91\'f0\'95\'a8\'82\'aa\'82\'c8\'82\'a9\'82\'c1\'82\'bd\'82\'e8\'8f\'f0\'8c\'8f\'82\'c9\'8a\'59\'93\'96\'82\'b7\'82\'e9\'82\'e0\'82\'cc\'82\'aa\'82\'c8\'82\'a9\'82\'c1\'82\'bd\'82\'e7\'81\'41\'83\'74\'83\'40\'83\'43\'83\'8b\'91\'49\'91\'f0\'83\'5f\'83\'43\'83\'41\'83\'8d\'83\'4f\'82\'f0\'8a\'4a\'82\'ab\'82\'dc\'82\'b7\'81\'42\
+* Droplet/Applet \'82\'aa Finder \'82\'a9\'82\'e7\'83\'5f\'83\'75\'83\'8b\'83\'4e\'83\'8a\'83\'62\'83\'4e\'82\'c9\'82\'e6\'82\'c1\'82\'c4\'8b\'4e\'93\'ae\'82\'b3\'82\'ea\'82\'bd\'82\'e7\'81\'41\'83\'74\'83\'40\'83\'43\'83\'8b\'91\'49\'91\'f0\'83\'5f\'83\'43\'83\'41\'83\'8d\'83\'4f \'82\'f0\'8a\'4a\'82\'ab\'82\'dc\'82\'b7\'81\'42\
+* \'91\'49\'91\'f0\'95\'a8\'92\'86\'82\'c9\'83\'47\'83\'43\'83\'8a\'83\'41\'83\'58\'83\'74\'83\'40\'83\'43\'83\'8b\'82\'aa\'8a\'dc\'82\'dc\'82\'ea\'82\'c4\'82\'a2\'82\'bd\'82\'e7\'81\'41\'83\'49\'83\'8a\'83\'57\'83\'69\'83\'8b\'82\'d6\'82\'cc\'8e\'51\'8f\'c6\'82\'f0\'8e\'e6\'93\'be\'82\'b5\'82\'c4\'83\'49\'83\'8a\'83\'57\'83\'69\'83\'8b\'82\'aa\'8f\'f0\'8c\'8f\'82\'c9\'8a\'59\'93\'96\'82\'b7\'82\'e9\'82\'a9\'92\'b2\'82\'d7\'82\'dc\'82\'b7\'81\'42\'83\'47\'83\'43\'83\'8a\'83\'41\'83\'58\'83\'74\'83\'40\'83\'43\'83\'8b\'82\'cc\'83\'49\'83\'8a\'83\'57\'83\'69\'83\'8b\'82\'f0\'8b\'81\'82\'df\'82\'c8\'82\'a2\'93\'ae\'8d\'ec\'82\'f0\'90\'dd\'92\'e8\'82\'b7\'82\'e9\'8e\'96\'82\'e0\'82\'c5\'82\'ab\'82\'dc\'82\'b7\'81\'42\
+ \cf0 *)
+\f1 \
+\
+
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 XList
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf3 module
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 * Class Variable *\cf0 *)
+\f1 \
+
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _promptMessage
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 "Choose an item"
+\f1 \
+
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _typeList
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf3 missing value
+\f1 \cf0 \
+
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _suffixList
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf3 missing value
+\f1 \cf0 \
+
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _targetApplication
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf3 current application
+\f1 \cf0 \
+
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _withResolveAlias
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf3 true
+\f1 \cf0 \
+
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _useChooser
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf3 true
+\f1 \cf0 \
+
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _defaultLocation
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf3 missing value
+\f1 \cf0 \
+
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _useInsertionLocation
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf3 false
+\f1 \cf0 \
+
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _allow_myself
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf3 false
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 * build in chooser script *\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 chooser_for_file\cf0 (\cf5 caller\cf0 )
+\f1 \
+	
+\f0 \cf2 script
+\f1 \cf0  
+\f0 \cf5 fileChooser
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _delegate
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf5 caller
+\f1 \cf0 \
+		
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _delegate\cf0 's
+\f1  
+\f0 \cf5 _targetApplication
+\f1 \cf0 \
+			
+\f0 \cf3 activate
+\f1 \cf0 \
+			
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _delegate
+\f1 \cf0 \
+				
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 type_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf2 it\cf0 's
+\f1  
+\f0 \cf5 _typeList
+\f1 \cf0 \
+				
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf5 type_list
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf3 missing value
+\f1 \cf0  
+\f0 \cf2 then
+\f1 \cf0 \
+					
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 type_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \{\}
+\f1 \
+				
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+				
+\f0 \cf2 if
+\f1 \cf0  
+\f0 (\cf2 it\cf0 's
+\f1  
+\f0 \cf5 _defaultLocation\cf0 )
+\f1  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf3 missing value
+\f1 \cf0  
+\f0 \cf2 then
+\f1 \cf0 \
+					
+\f0 \cf3 choose file
+\f1 \cf0  
+\f0 \cf3 with prompt
+\f1 \cf0  
+\f0 \cf2 it\cf0 's
+\f1  
+\f0 \cf5 _promptMessage
+\f1 \cf0  
+\f0 \cf3 of type
+\f1 \cf0  
+\f0 \cf5 type_list
+\f1 \cf0  
+\f0 \cf2 with
+\f1 \cf0  
+\f0 \cf3 multiple selections allowed
+\f1 \cf0  
+\f0 \cf2 without
+\f1 \cf0  
+\f0 \cf3 invisibles
+\f1 \cf0 \
+				
+\f0 \cf2 else
+\f1 \cf0 \
+					
+\f0 \cf3 choose file
+\f1 \cf0  
+\f0 \cf3 with prompt
+\f1 \cf0  
+\f0 \cf2 it\cf0 's
+\f1  
+\f0 \cf5 _promptMessage
+\f1 \cf0  
+\f0 \cf3 of type
+\f1 \cf0  
+\f0 \cf5 type_list
+\f1 \cf0  
+\f0 \cf3 default location
+\f1 \cf0  
+\f0 \cf2 it\cf0 's
+\f1  
+\f0 \cf5 _defaultLocation
+\f1 \cf0  
+\f0 \cf2 with
+\f1 \cf0  
+\f0 \cf3 multiple selections allowed
+\f1 \cf0  
+\f0 \cf2 without
+\f1 \cf0  
+\f0 \cf3 invisibles
+\f1 \cf0 \
+				
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+			
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+		
+\f0 \cf2 return
+\f1 \cf0  
+\f0 (\cf3 result
+\f1 \cf0  
+\f0 \cf2 as
+\f1 \cf0  
+\f0 \cf3 list\cf0 )
+\f1 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 script
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 chooser_for_file
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 chooser_for_folder\cf0 (\cf5 caller\cf0 )
+\f1 \
+	
+\f0 \cf2 script
+\f1 \cf0  
+\f0 \cf5 folderChooser
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _delegate
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf5 caller
+\f1 \cf0 \
+		\
+		
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf5 _delegate\cf0 's
+\f1  
+\f0 \cf5 _targetApplication
+\f1 \cf0 \
+			
+\f0 \cf3 activate
+\f1 \cf0 \
+			
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf5 _delegate
+\f1 \cf0 \
+				
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf2 it\cf0 's
+\f1  
+\f0 \cf5 _defaultLocation
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf3 missing value
+\f1 \cf0  
+\f0 \cf2 then
+\f1 \cf0 \
+					
+\f0 \cf3 choose folder
+\f1 \cf0  
+\f0 \cf3 with prompt
+\f1 \cf0  
+\f0 \cf2 it\cf0 's
+\f1  
+\f0 \cf5 _promptMessage
+\f1 \cf0 \
+				
+\f0 \cf2 else
+\f1 \cf0 \
+					
+\f0 \cf3 choose folder
+\f1 \cf0  
+\f0 \cf3 with prompt
+\f1 \cf0  
+\f0 \cf2 it\cf0 's
+\f1  
+\f0 \cf5 _promptMessage
+\f1 \cf0  
+\f0 \cf3 default location
+\f1 \cf0  
+\f0 \cf2 it\cf0 's
+\f1  
+\f0 \cf5 _defaultLocation
+\f1 \cf0 \
+				
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+			
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+		
+\f0 \cf2 return
+\f1 \cf0  
+\f0 (\cf3 result
+\f1 \cf0  
+\f0 \cf2 as
+\f1 \cf0  
+\f0 \cf3 list\cf0 )
+\f1 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 script
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 chooser_for_folder
+\f1 \cf0 \
+\
+
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _chooser
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf5 chooser_for_file\cf0 (\cf2 me\cf0 )
+\f1  
+\f0 --\cf4  obsolute
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 * picker scripts *\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 base_picker\cf0 (\cf5 delegate\cf0 )
+\f1 \
+	
+\f0 \cf2 script
+\f1 \cf0  
+\f0 \cf5 BasePicker
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _delegate
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf5 delegate
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _is_insertion_location
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf3 false
+\f1 \cf0 \
+		\
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 finder_selection\cf0 ()
+\f1 \
+			
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf3 application
+\f1 \cf0  
+\f0 "Finder"
+\f1 \
+				
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 selection
+\f1 \cf0 \
+			
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 finder_selection
+\f1 \cf0 \
+		\
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 is_match\cf0 (\cf5 an_item\cf0 )
+\f1 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 true
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 is_match
+\f1 \cf0 \
+		\
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 trash_path\cf0 ()
+\f1 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 path to
+\f1 \cf0  
+\f0 \cf3 trash
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 trash_path
+\f1 \cf0 \
+		\
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 remove_special\cf0 (\cf5 a_list\cf0 )
+\f1 \
+			
+\f0 --\cf4 log "start remove special"
+\f1 \cf0 \
+			
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_location
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 item
+\f1 \cf0  
+\f0 1
+\f1  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0 \
+			
+\f0 \cf2 try
+\f1 \cf0 \
+				
+\f0 \cf5 a_location
+\f1 \cf0  
+\f0 \cf2 as
+\f1 \cf0  
+\f0 \cf3 alias
+\f1 \cf0 \
+				
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \{\cf5 a_location\cf0 \}
+\f1 \
+			
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf2 error
+\f1 \cf0 \
+				
+\f0 --\cf4 log "error"
+\f1 \cf0 \
+				
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \{\}
+\f1 \
+				
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf3 application
+\f1 \cf0  
+\f0 "Finder"
+\f1 \
+					
+\f0 \cf2 if
+\f1 \cf0  
+\f0 (\cf3 exists
+\f1 \cf0  
+\f0 \cf3 Finder window
+\f1 \cf0  
+\f0 1)
+\f1  
+\f0 \cf2 then
+\f1 \cf0 \
+						
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_name
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 name
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf3 Finder window
+\f1 \cf0  
+\f0 1
+\f1 \
+						
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf5 a_name
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf3 displayed name
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf3 trash
+\f1 \cf0  
+\f0 \cf2 then
+\f1 \cf0 \
+							
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_location
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 trash_path\cf0 ()
+\f1 \
+							
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \{\cf5 a_location\cf0 \}
+\f1 \
+						
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+					
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+				
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+			
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 try
+\f1 \cf0 \
+			
+\f0 --\cf4 log a_list
+\f1 \cf0 \
+			
+\f0 --\cf4 log "end remove_special"
+\f1 \cf0 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 remove_special
+\f1 \cf0 \
+		\
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 is_insertion_location\cf0 ()
+\f1 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _is_insertion_location
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 is_insertion_location
+\f1 \cf0 \
+		\
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0 \
+			
+\f0 --\cf4 log "start run in BasePicker"
+\f1 \cf0 \
+			
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 selected_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 XList\cf0 's
+\f1  
+\f0 \cf5 make_with\cf0 (\cf5 finder_selection\cf0 ())
+\f1 \
+			
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \{\}
+\f1 \
+			
+\f0 \cf2 repeat
+\f1 \cf0  
+\f0 \cf2 while
+\f1 \cf0  
+\f0 (\cf5 selected_list\cf0 's
+\f1  
+\f0 \cf5 has_next\cf0 ())
+\f1 \
+				
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 an_item
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 _delegate\cf0 's
+\f1  
+\f0 \cf5 resolve_alias\cf0 (\cf5 selected_list\cf0 's
+\f1  
+\f0 \cf5 next\cf0 ())
+\f1 \
+				
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf5 is_match\cf0 (\cf5 an_item\cf0 )
+\f1  
+\f0 \cf2 then
+\f1 \cf0 \
+					
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf5 _delegate\cf0 's
+\f1  
+\f0 \cf5 _withResolveAlias
+\f1 \cf0  
+\f0 \cf2 then
+\f1 \cf0 \
+						
+\f0 --\cf4  if an_item is symbolic link, "as alias" cause resolving original
+\f1 \cf0 \
+						
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 an_item
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 an_item
+\f1 \cf0  
+\f0 \cf2 as
+\f1 \cf0  
+\f0 \cf3 alias
+\f1 \cf0 \
+					
+\f0 \cf2 else
+\f1 \cf0 \
+						
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 an_item
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 an_item
+\f1 \cf0  
+\f0 \cf2 as
+\f1 \cf0  
+\f0 \cf3 Unicode text
+\f1 \cf0 \
+					
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+					
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 an_item
+\f1 \cf0 \
+				
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+			
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 repeat
+\f1 \cf0 \
+			\
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 script
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 base_picker
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 picker_for_file\cf0 (\cf5 caller\cf0 )
+\f1 \
+	
+\f0 \cf2 script
+\f1 \cf0  
+\f0 \cf5 FilePicker
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf3 parent
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf5 base_picker\cf0 (\cf5 caller\cf0 )
+\f1 \
+		\
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 continue
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0 \
+		\
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 match_class\cf0 (\cf5 a_path\cf0 )
+\f1 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf5 a_path
+\f1 \cf0  
+\f0 \cf2 does not
+\f1 \cf0  
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 with
+\f1 \cf0  
+\f0 ":"
+\f1 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 match_class
+\f1 \cf0 \
+		\
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 is_match\cf0 (\cf5 an_item\cf0 )
+\f1 \
+			
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_result
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 false
+\f1 \cf0 \
+			
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_path
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 an_item
+\f1 \cf0  
+\f0 \cf2 as
+\f1 \cf0  
+\f0 \cf3 Unicode text
+\f1 \cf0 \
+			
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf5 match_class\cf0 (\cf5 a_path\cf0 )
+\f1  
+\f0 \cf2 then
+\f1 \cf0 \
+				
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _delegate
+\f1 \cf0 \
+					
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_result
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 (\cf5 match_suffix\cf0 (\cf5 a_path\cf0 )
+\f1  
+\f0 \cf2 or
+\f1 \cf0  
+\f0 \cf5 match_type\cf0 (\cf5 an_item\cf0 ))
+\f1 \
+				
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+			
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf5 a_result
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 is_match
+\f1 \cf0 \
+		\
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 script
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 picker_for_file
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 picker_for_item\cf0 (\cf5 caller\cf0 )
+\f1 \
+	
+\f0 \cf2 script
+\f1 \cf0  
+\f0 \cf5 ItemPicker
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf3 parent
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf5 base_picker\cf0 (\cf5 caller\cf0 )
+\f1 \
+		\
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 continue
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0 \
+		\
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 finder_selection\cf0 ()
+\f1 \
+			
+\f0 --\cf4 log "start finder_selection of ItemPicker"
+\f1 \cf0 \
+			
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf2 continue
+\f1 \cf0  
+\f0 \cf5 finder_selection\cf0 ()
+\f1 \
+			
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _delegate\cf0 's
+\f1  
+\f0 \cf5 use_insertion_location\cf0 ()
+\f1  
+\f0 \cf2 and
+\f1 \cf0  
+\f0 (\cf5 a_list
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \{\})
+\f1  
+\f0 \cf2 then
+\f1 \cf0 \
+				
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf3 application
+\f1 \cf0  
+\f0 "Finder"
+\f1 \
+					
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \{\cf3 insertion location\cf0 \}
+\f1 \
+				
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+				
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _is_insertion_location
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 true
+\f1 \cf0 \
+			
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+			
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf3 length
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 1
+\f1  
+\f0 \cf2 then
+\f1 \cf0 \
+				
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 remove_special\cf0 (\cf5 a_list\cf0 )
+\f1 \
+			
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+			
+\f0 --\cf4 log "end finder_selection of ItemPicker"
+\f1 \cf0 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 finder_selection
+\f1 \cf0 \
+		\
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 match_class\cf0 (\cf5 an_item\cf0 )
+\f1 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 true
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 match_class
+\f1 \cf0 \
+		\
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 is_match\cf0 (\cf5 an_item\cf0 )
+\f1 \
+			
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf2 not
+\f1 \cf0  
+\f0 \cf5 match_class\cf0 (\cf5 an_item\cf0 )
+\f1  
+\f0 \cf2 then
+\f1 \cf0  
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 false
+\f1 \cf0 \
+			\
+			
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _delegate
+\f1 \cf0 \
+				
+\f0 \cf2 return
+\f1 \cf0  
+\f0 (\cf5 match_suffix\cf0 (\cf5 an_item\cf0 )
+\f1  
+\f0 \cf2 or
+\f1 \cf0  
+\f0 \cf5 match_type\cf0 (\cf5 an_item\cf0 ))
+\f1 \
+			
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 is_match
+\f1 \cf0 \
+		\
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 script
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 picker_for_item
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 picker_for_application\cf0 (\cf5 caller\cf0 )
+\f1 \
+	
+\f0 \cf2 script
+\f1 \cf0  
+\f0 \cf5 ApplicationPicker
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf3 parent
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf5 base_picker\cf0 (\cf5 caller\cf0 )
+\f1 \
+		\
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 continue
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0 \
+		\
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 is_match\cf0 (\cf5 an_item\cf0 )
+\f1 \
+			
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf3 application
+\f1 \cf0  
+\f0 "Finder"
+\f1 \
+				
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 class
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf5 an_item
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf3 application file
+\f1 \cf0 \
+			
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 is_match
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 script
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 picker_for_application
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 picker_for_folder\cf0 (\cf5 caller\cf0 )
+\f1 \
+	
+\f0 \cf2 script
+\f1 \cf0  
+\f0 \cf5 FolderPicker
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf3 parent
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf5 base_picker\cf0 (\cf5 caller\cf0 )
+\f1 \
+		\
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 continue
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0 \
+		\
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 finder_selection\cf0 ()
+\f1 \
+			
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf2 continue
+\f1 \cf0  
+\f0 \cf5 finder_selection\cf0 ()
+\f1 \
+			
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _delegate\cf0 's
+\f1  
+\f0 \cf5 use_insertion_location\cf0 ()
+\f1  
+\f0 \cf2 and
+\f1 \cf0  
+\f0 (\cf5 a_list
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \{\})
+\f1  
+\f0 \cf2 then
+\f1 \cf0 \
+				
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf3 application
+\f1 \cf0  
+\f0 "Finder"
+\f1 \
+					
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \{\cf3 insertion location\cf0 \}
+\f1 \
+				
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+				
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _is_insertion_location
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 true
+\f1 \cf0 \
+			
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+			\
+			
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf3 length
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 1
+\f1  
+\f0 \cf2 then
+\f1 \cf0 \
+				
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 remove_special\cf0 (\cf5 a_list\cf0 )
+\f1 \
+			
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 finder_selection
+\f1 \cf0 \
+		\
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 match_class\cf0 (\cf5 an_item\cf0 )
+\f1 \
+			
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf3 application
+\f1 \cf0  
+\f0 "Finder"
+\f1 \
+				
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 class
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf5 an_item
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf3 folder
+\f1 \cf0 \
+			
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 match_class
+\f1 \cf0 \
+		\
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 is_match\cf0 (\cf5 an_item\cf0 )
+\f1 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 (\cf5 match_class\cf0 (\cf5 an_item\cf0 )
+\f1  
+\f0 \cf2 and
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _delegate\cf0 's
+\f1  
+\f0 \cf5 match_suffix\cf0 (\cf5 an_item\cf0 ))
+\f1 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 is_match
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 script
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 picker_for_folder
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 picker_for_disk\cf0 (\cf5 caller\cf0 )
+\f1 \
+	
+\f0 \cf2 script
+\f1 \cf0  
+\f0 \cf5 DiskPicker
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf3 parent
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf5 picker_for_folder\cf0 (\cf5 caller\cf0 )
+\f1 \
+		\
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 continue
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0 \
+		\
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 match_class\cf0 (\cf5 an_item\cf0 )
+\f1 \
+			
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf3 application
+\f1 \cf0  
+\f0 "Finder"
+\f1 \
+				
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 class
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf5 an_item
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf3 disk
+\f1 \cf0 \
+			
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 match_class
+\f1 \cf0 \
+		\
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 script
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 picker_for_disk
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 picker_for_container\cf0 (\cf5 caller\cf0 )
+\f1 \
+	
+\f0 \cf2 script
+\f1 \cf0  
+\f0 \cf5 ContainerPicker
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf3 parent
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf5 picker_for_folder\cf0 (\cf5 caller\cf0 )
+\f1 \
+		\
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 continue
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0 \
+		\
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 match_class\cf0 (\cf5 an_item\cf0 )
+\f1 \
+			
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf3 application
+\f1 \cf0  
+\f0 "Finder"
+\f1 \
+				
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 class
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf5 an_item
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf2 in
+\f1 \cf0  
+\f0 \{\cf3 folder\cf0 ,
+\f1  
+\f0 \cf3 disk\cf0 \}
+\f1 \
+			
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 match_class
+\f1 \cf0 \
+		\
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 script
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 picker_for_container
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 picker_for_document\cf0 (\cf5 caller\cf0 )
+\f1 \
+	
+\f0 \cf2 script
+\f1 \cf0  
+\f0 \cf5 DocumentPicker
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf3 parent
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf5 picker_for_item\cf0 (\cf5 caller\cf0 )
+\f1 \
+		\
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 continue
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0 \
+		\
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 match_class\cf0 (\cf5 an_item\cf0 )
+\f1 \
+			
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf3 application
+\f1 \cf0  
+\f0 "Finder"
+\f1 \
+				
+\f0 \cf2 return
+\f1 \cf0  
+\f0 (\cf3 class
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf5 an_item
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf3 document file\cf0 )
+\f1 \
+			
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 match_class
+\f1 \cf0 \
+		\
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 script
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 picker_for_document
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 picker_for_package\cf0 (\cf5 caller\cf0 )
+\f1 \
+	
+\f0 \cf2 script
+\f1 \cf0  
+\f0 \cf5 PackagePicker
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf3 parent
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf5 picker_for_item\cf0 (\cf5 caller\cf0 )
+\f1 \
+		\
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 is_match\cf0 (\cf5 an_item\cf0 )
+\f1 \
+			
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf2 continue
+\f1 \cf0  
+\f0 \cf5 is_match\cf0 (\cf5 an_item\cf0 )
+\f1  
+\f0 \cf2 then
+\f1 \cf0 \
+				
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 package folder
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 (\cf3 info for
+\f1 \cf0  
+\f0 (\cf5 an_item
+\f1 \cf0  
+\f0 \cf2 as
+\f1 \cf0  
+\f0 \cf3 alias\cf0 ))
+\f1 \
+			
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 is_match
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 script
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 picker_for_package
+\f1 \cf0 \
+\
+
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _picker
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf5 picker_for_item\cf0 (\cf2 me\cf0 )
+\f1 \
+\
+
+\f0 (*\cf4 * public handlers *\cf0 *)
+\f1 \
+\
+
+\f0 (*\cf4 !@group Constructor \
+\'82\'dc\'82\'b8\'82\'cd\'81\'41Finder \'82\'a9\'82\'e7\'8e\'e6\'93\'be\'82\'b5\'82\'bd\'82\'a2\'83\'74\'83\'40\'83\'43\'83\'8b/\'83\'74\'83\'48\'83\'8b\'83\'5f\'82\'cc\'8e\'ed\'97\'de\'82\'c9\'89\'9e\'82\'b6\'82\'bd\'83\'43\'83\'93\'83\'58\'83\'5e\'83\'93\'83\'58\'82\'f0\'90\'b6\'90\'ac\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+\cf0 *)
+\f1 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf3 make
+\f1 \cf0 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_parent
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+	
+\f0 \cf2 script
+\f1 \cf0  
+\f0 \cf5 FinderSelection
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf3 parent
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf5 a_parent
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _picker
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf3 missing value
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _chooser
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf3 missing value
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _typeList
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _typeList
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _suffixList
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _suffixList
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _defaultLocation
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _defaultLocation
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _promptMessage
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _promptMessage
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _withResolveAlias
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _withResolveAlias
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _targetApplication
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _targetApplication
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _useInsertionLocation
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _useInsertionLocation
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _useChooser
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _useChooser
+\f1 \cf0 \
+		
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _allow_myself
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _allow_myself
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 script
+\f1 \cf0 \
+	\
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf5 FinderSelection
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf3 make
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !\
+@abstruct Finder \'82\'c5\'91\'49\'91\'f0\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9\'83\'74\'83\'40\'83\'43\'83\'8b/\'83\'74\'83\'48\'83\'8b\'83\'5f\'82\'f0\'82\'b7\'82\'d7\'82\'c4\'8e\'e6\'93\'be\'82\'b7\'82\'e9\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'82\'f0\'90\'b6\'90\'ac\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+@result FinderSelection \'82\'cc\'83\'43\'83\'93\'83\'58\'83\'5e\'83\'93\'83\'58\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 make_for_item\cf0 ()
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 self
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 make
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf5 self\cf0 's
+\f1  
+\f0 \cf5 setup_for_item\cf0 ()
+\f1 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 make_for_item
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !\
+@abstruct \'91\'49\'91\'f0\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9\'82\'e0\'82\'cc\'82\'cc\'92\'86\'82\'a9\'82\'e7\'81\'41\'83\'74\'83\'40\'83\'43\'83\'8b\'82\'f0\'8e\'e6\'93\'be\'82\'b7\'82\'e9\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'82\'f0\'90\'b6\'90\'ac\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+@result FinderSelection \'82\'cc\'83\'43\'83\'93\'83\'58\'83\'5e\'83\'93\'83\'58\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 make_for_file\cf0 ()
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 self
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 make
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf5 self\cf0 's
+\f1  
+\f0 \cf5 setup_for_file\cf0 ()
+\f1 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 make_for_file
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !\
+@abstruct \'91\'49\'91\'f0\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9\'82\'e0\'82\'cc\'82\'cc\'92\'86\'82\'a9\'82\'e7\'81\'41\'8f\'91\'97\'de\'83\'74\'83\'40\'83\'43\'83\'8b\'82\'f0\'8e\'e6\'93\'be\'82\'b7\'82\'e9\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'82\'f0\'90\'b6\'90\'ac\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+@result FinderSelection \'82\'cc\'83\'43\'83\'93\'83\'58\'83\'5e\'83\'93\'83\'58\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 make_for_document\cf0 ()
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 self
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 make
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf5 self\cf0 's
+\f1  
+\f0 \cf5 setup_for_document\cf0 ()
+\f1 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 make_for_document
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !\
+@abstruct \'91\'49\'91\'f0\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9\'82\'e0\'82\'cc\'82\'cc\'92\'86\'82\'a9\'82\'e7\'81\'41\'83\'41\'83\'76\'83\'8a\'83\'50\'81\'5b\'83\'56\'83\'87\'83\'93\'82\'f0\'8e\'e6\'93\'be\'82\'b7\'82\'e9\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'82\'f0\'90\'b6\'90\'ac\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+@result FinderSelection \'82\'cc\'83\'43\'83\'93\'83\'58\'83\'5e\'83\'93\'83\'58\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 make_for_application\cf0 ()
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 self
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 make
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf5 self\cf0 's
+\f1  
+\f0 \cf5 setup_for_application\cf0 ()
+\f1 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 make_for_application
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !\
+@abstruct \'91\'49\'91\'f0\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9\'82\'e0\'82\'cc\'82\'cc\'92\'86\'82\'a9\'82\'e7\'81\'41\'83\'70\'83\'62\'83\'50\'81\'5b\'83\'57\'82\'f0\'8e\'e6\'93\'be\'82\'b7\'82\'e9\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'82\'f0\'90\'b6\'90\'ac\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+@result script object : FinderSelection \'82\'cc\'83\'43\'83\'93\'83\'58\'83\'5e\'83\'93\'83\'58\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 make_for_package\cf0 ()
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 self
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 make
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf5 self\cf0 's
+\f1  
+\f0 \cf5 setup_for_package\cf0 ()
+\f1 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 make_for_package
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !\
+@abstruct \'91\'49\'91\'f0\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9\'82\'e0\'82\'cc\'82\'cc\'92\'86\'82\'a9\'82\'e7\'81\'41\'83\'66\'83\'42\'83\'58\'83\'4e\'82\'e0\'82\'b5\'82\'ad\'82\'cd\'83\'74\'83\'48\'83\'8b\'83\'5f\'82\'f0\'8e\'e6\'93\'be\'82\'b7\'82\'e9\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'82\'f0\'90\'b6\'90\'ac\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+@result FinderSelection \'82\'cc\'83\'43\'83\'93\'83\'58\'83\'5e\'83\'93\'83\'58\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 make_for_container\cf0 ()
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 self
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 make
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf5 self\cf0 's
+\f1  
+\f0 \cf5 setup_for_container\cf0 ()
+\f1 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 make_for_container
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !\
+@abstruct \'91\'49\'91\'f0\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9\'82\'e0\'82\'cc\'82\'cc\'92\'86\'82\'a9\'82\'e7\'81\'41\'83\'74\'83\'48\'83\'8b\'83\'5f\'82\'f0\'8e\'e6\'93\'be\'82\'b7\'82\'e9\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'82\'f0\'90\'b6\'90\'ac\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+@result FinderSelection \'82\'cc\'83\'43\'83\'93\'83\'58\'83\'5e\'83\'93\'83\'58\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 make_for_folder\cf0 ()
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 self
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 make
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf5 self\cf0 's
+\f1  
+\f0 \cf5 setup_for_folder\cf0 ()
+\f1 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 make_for_folder
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !\
+@abstruct \'91\'49\'91\'f0\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9\'82\'e0\'82\'cc\'82\'cc\'92\'86\'82\'a9\'82\'e7\'81\'41\'83\'66\'83\'42\'83\'58\'83\'4e\'82\'f0\'8e\'e6\'93\'be\'82\'b7\'82\'e9\'83\'49\'83\'75\'83\'57\'83\'46\'83\'4e\'83\'67\'82\'f0\'90\'b6\'90\'ac\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+@result FinderSelection \'82\'cc\'83\'43\'83\'93\'83\'58\'83\'5e\'83\'93\'83\'58\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 make_for_disk\cf0 ()
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 self
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 make
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf5 self\cf0 's
+\f1  
+\f0 \cf5 setup_for_disk\cf0 ()
+\f1 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 make_for_disk
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !@group Getting Finder's Selection \
+\
+@abstruct Finder \'82\'c5\'91\'49\'91\'f0\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9\'8d\'80\'96\'da\'82\'f0\'8e\'e6\'93\'be\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+@result list of alias\'81\'40 : \'91\'49\'91\'f0\'8d\'80\'96\'da\'82\'cc\'8e\'e6\'93\'be\'82\'c9\'8e\'b8\'94\'73\'82\'b5\'82\'bd\'82\'e7 missing value \'82\'aa\'95\'d4\'82\'e8\'82\'dc\'82\'b7\'81\'42\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 get_selection\cf0 ()
+\f1 \
+	
+\f0 --\cf4 log "start get_selection"
+\f1 \cf0 \
+	
+\f0 \cf2 local
+\f1 \cf0  
+\f0 \cf5 a_list\cf0 ,
+\f1  
+\f0 \cf5 an_item\cf0 ,
+\f1  
+\f0 \cf5 n_select
+\f1 \cf0 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _picker
+\f1 \cf0 \
+	
+\f0 --\cf4 log "after run picker in get_selection"
+\f1 \cf0 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 n_select
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 length
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0 \
+	
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf5 n_select
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 0
+\f1  
+\f0 \cf2 then
+\f1 \cf0 \
+		
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _useChooser
+\f1 \cf0  
+\f0 \cf2 then
+\f1 \cf0 \
+			
+\f0 --\cf4 log "before run chooser in get_selection"
+\f1 \cf0 \
+			
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _chooser
+\f1 \cf0 \
+		
+\f0 \cf2 else
+\f1 \cf0 \
+			
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 missing value
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+	
+\f0 \cf2 else
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0  
+\f0 (\cf2 not
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _allow_myself\cf0 )
+\f1  
+\f0 \cf2 and
+\f1 \cf0  
+\f0 (\cf5 n_select
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 1)
+\f1  
+\f0 \cf2 then
+\f1 \cf0 \
+		
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 except_myself\cf0 (\cf3 item
+\f1 \cf0  
+\f0 1
+\f1  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf5 a_list\cf0 )
+\f1 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 get_selection
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !@group Accessor Methods \
+\
+FinderSelection \'82\'cc\'83\'43\'83\'93\'83\'58\'83\'5e\'83\'93\'83\'58\'82\'cc\'93\'ae\'8d\'ec\'82\'f0\'83\'4a\'83\'58\'83\'5e\'83\'7d\'83\'43\'83\'59\'82\'b5\'82\'dc\'82\'b7\'81\'42\'82\'e6\'82\'ad\'8e\'67\'82\'a4 method \'82\'cd\'8e\'9f\'82\'cc \'82\'52\'82\'c2\'82\'be\'82\'c6\'8e\'76\'82\'a2\'82\'dc\'82\'b7\'81\'42\
+\
+* ((<set_types>))\
+* ((<set_extensions>))\
+* ((<set_prompt_message>))\
+\cf0 *)
+\f1 \
+\
+
+\f0 (*\cf4 !\
+@abstruct\'81\'40\'8e\'e6\'93\'be\'82\'b5\'82\'bd\'82\'a2\'83\'74\'83\'40\'83\'43\'83\'8b\'82\'cc\'83\'74\'83\'40\'83\'43\'83\'8b\'83\'5e\'83\'43\'83\'76\'82\'f0\'90\'dd\'92\'e8\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+@param type_list (list) : \'83\'74\'83\'40\'83\'43\'83\'8b\'83\'5e\'83\'43\'83\'76\'82\'cc\'83\'8a\'83\'58\'83\'67 ex) \{"TEXT", "PDF "\}\
+@result script object : me\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 set_types\cf0 (\cf5 type_list\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _typeList
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 type_list
+\f1 \cf0 \
+	
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _suffixList
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf3 missing value
+\f1 \cf0  
+\f0 \cf2 then
+\f1 \cf0 \
+		
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _suffixList
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \{\}
+\f1 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 set_types
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !\
+@abstruct\'81\'40\'8e\'e6\'93\'be\'82\'b5\'82\'bd\'82\'a2\'83\'74\'83\'40\'83\'43\'83\'8b/\'83\'74\'83\'48\'83\'8b\'83\'5f\'82\'cc\'8a\'67\'92\'a3\'8e\'71\'82\'f0\'90\'dd\'92\'e8\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+@param extenstion_list (list) : \'8a\'67\'92\'a3\'8e\'71\'82\'cc\'83\'8a\'83\'58\'83\'67 ex) \{".rtf", ".pdf"\}\
+@result script object : me\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 set_extensions\cf0 (\cf5 extension_list\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _suffixList
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 extension_list
+\f1 \cf0 \
+	
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _typeList
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf3 missing value
+\f1 \cf0  
+\f0 \cf2 then
+\f1 \cf0 \
+		
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _typeList
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \{\}
+\f1 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 set_extensions
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !\
+@abstruct \'83\'74\'83\'40\'83\'43\'83\'8b/\'83\'74\'83\'48\'83\'8b\'83\'5f\'91\'49\'91\'f0\'83\'5f\'83\'43\'83\'41\'83\'8d\'83\'4f\'82\'c5\'95\'5c\'8e\'a6\'82\'b3\'82\'ea\'82\'e9\'83\'81\'83\'62\'83\'5a\'81\'5b\'83\'57\
+@param a_message (Unicode text or string)\
+@result script object : me\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 set_prompt_message\cf0 (\cf5 a_message\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _promptMessage
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 a_message
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 set_prompt_message
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !\
+@abstruct Finder \'82\'c5\'91\'49\'91\'f0\'8d\'80\'96\'da\'82\'aa\'96\'b3\'82\'a2\'8f\'ea\'8d\'87\'81\'41 \'83\'74\'83\'40\'83\'43\'83\'8b/\'83\'74\'83\'48\'83\'8b\'83\'5f\'91\'49\'91\'f0\'83\'5f\'83\'43\'83\'41\'83\'8d\'83\'4f\'82\'f0\'8a\'4a\'82\'ad\'82\'a9\'82\'c7\'82\'a4\'82\'a9\'81\'42\
+@description false \'82\'f0\'90\'dd\'92\'e8\'82\'b7\'82\'e9\'82\'c6\'81\'41\'83\'74\'83\'40\'83\'43\'83\'8b/\'83\'74\'83\'48\'83\'8b\'83\'5f\'91\'49\'91\'f0\'83\'5f\'83\'43\'83\'41\'83\'8d\'83\'4f\'82\'f0\'8a\'4a\'82\'ab\'82\'dc\'82\'b9\'82\'f1\'81\'42\
+\'83\'66\'83\'74\'83\'48\'83\'8b\'83\'67\'82\'c5\'82\'cd\'81\'40true \'82\'aa\'90\'dd\'92\'e8\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'dc\'82\'b7\'81\'42\
+@param a_bool (boolean) : \'83\'74\'83\'40\'83\'43\'83\'8b/\'83\'74\'83\'48\'83\'8b\'83\'5f\'91\'49\'91\'f0\'83\'5f\'83\'43\'83\'41\'83\'8d\'83\'4f\'82\'f0\'8a\'4a\'82\'ad\'82\'a9\'82\'c7\'82\'a4\'82\'a9\'81\'42\
+@result script object : me\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 set_use_chooser\cf0 (\cf5 a_bool\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _useChooser
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 a_bool
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 set_use_chooser
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !\
+@abstruct\
+Finder \'82\'c5\'91\'49\'91\'f0\'8d\'80\'96\'da\'82\'aa\'96\'b3\'82\'a2\'8f\'ea\'8d\'87\'81\'41 \'91\'49\'91\'f0\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9\'8f\'ea\'8f\'8a\'82\'f0\'8e\'e6\'93\'be\'82\'b7\'82\'e9\'82\'a9\'82\'c7\'82\'a4\'82\'a9\'81\'42\
+@description \
+\'81\'75\'91\'49\'91\'f0\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9\'8f\'ea\'8f\'8a\'81\'76\'82\'c6\'82\'cd\'81\'41Finder \'82\'c5\'83\'81\'83\'6a\'83\'85\'81\'5b\'81\'75\'90\'56\'8b\'4b\'83\'74\'83\'48\'83\'8b\'83\'5f\'81\'76\'82\'c5\'83\'74\'83\'48\'83\'8b\'83\'5f\'82\'aa\'8d\'ec\'82\'e7\'82\'ea\'82\'e9\'8f\'ea\'8f\'8a\'82\'c5\'82\'b7\'81\'42\
+\
+\'83\'74\'83\'48\'83\'8b\'83\'5f\'82\'f0\'8e\'e6\'93\'be\'82\'b7\'82\'e9\'89\'c2\'94\'5c\'90\'ab\'82\'aa\'82\'a0\'82\'e9\'83\'43\'83\'93\'83\'58\'83\'5e\'83\'93\'83\'58\'81\'69((<make_for_item>)) \'82\'e2 ((<make_for_folder>)) \'82\'c8\'82\'c7\'82\'c5\'90\'b6\'90\'ac\'81\'6a\'82\'cc\'8f\'ea\'8d\'87\'82\'cc\'82\'dd\'82\'c9\'8c\'f8\'89\'ca\'82\'aa\'82\'a0\'82\'e8\'82\'dc\'82\'b7\'81\'42\
+\
+\'83\'66\'83\'74\'83\'48\'83\'8b\'83\'67\'82\'c5\'82\'cd false \'82\'aa\'90\'dd\'92\'e8\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'dc\'82\'b7\'81\'42\
+@param a_bool (boolean) : \'91\'49\'91\'f0\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9\'8f\'ea\'8f\'8a\'82\'f0\'8f\'8a\'93\'be\'82\'b7\'82\'e9\'82\'a9\'82\'c7\'82\'a4\'82\'a9\'81\'42\
+@result script object : me\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 set_use_insertion_location\cf0 (\cf5 a_bool\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _useInsertionLocation
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 a_bool
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 set_use_insertion_location
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 use_insertion_location\cf0 ()
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _useInsertionLocation
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 use_insertion_location
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !\
+@abstruct\
+Finder \'82\'c5\'8e\'a9\'95\'aa\'8e\'a9\'90\'67\'81\'69\'83\'58\'83\'4e\'83\'8a\'83\'76\'83\'67\'83\'74\'83\'40\'83\'43\'83\'8b\'82\'e2\'83\'41\'83\'76\'83\'8a\'83\'50\'81\'5b\'83\'56\'83\'87\'83\'93\'81\'6a\'82\'aa\'91\'49\'91\'f0\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9\'8f\'ea\'8d\'87\'81\'41\'91\'49\'91\'f0\'8d\'80\'96\'da\'82\'c9\'8a\'dc\'82\'df\'82\'e9\'82\'a9\'82\'c7\'82\'a4\'82\'a9\'81\'42\
+@description\
+\'83\'66\'83\'74\'83\'48\'83\'8b\'83\'67\'82\'c5\'82\'cd false \'82\'aa\'90\'dd\'92\'e8\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'dc\'82\'b7\'81\'42\
+@param a_bool (boolean)\
+@result script object : me\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 set_allow_myself\cf0 (\cf5 a_bool\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _allow_myself
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 a_bool
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 set_allow_myself
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 allow_myself\cf0 ()
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _allow_myself
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 allow_myself
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !\
+@abstruct \'83\'47\'83\'43\'83\'8a\'83\'41\'83\'58\'83\'74\'83\'40\'83\'43\'83\'8b\'82\'aa Finder \'82\'c5\'91\'49\'91\'f0\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'e9\'8e\'9e\'82\'c9\'81\'41\'82\'bb\'82\'cc\'83\'49\'83\'8a\'83\'57\'83\'69\'83\'8b\'82\'f0\'8b\'81\'82\'df\'82\'e9\'82\'a9\'82\'c7\'82\'a4\'82\'a9\
+@description false \'82\'f0\'90\'dd\'92\'e8\'82\'b7\'82\'e9\'82\'c6\'81\'41\'83\'49\'83\'8a\'83\'57\'83\'69\'83\'8b\'82\'f0\'8b\'81\'82\'df\'82\'dc\'82\'b9\'82\'f1\'81\'42\'83\'66\'83\'74\'83\'48\'83\'8b\'83\'67\'82\'c5\'82\'cd true \'82\'aa\'90\'dd\'92\'e8\'82\'b3\'82\'ea\'82\'c4\'82\'a2\'82\'dc\'82\'b7\'81\'42\
+@param a_bool (boolean)\
+@result script object : me\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 set_resolve_alias\cf0 (\cf5 a_bool\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _withResolveAlias
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 a_bool
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 set_resolve_alias
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !\
+@abstruct Finder \'82\'c5\'91\'49\'91\'f0\'8d\'80\'96\'da\'82\'aa\'96\'b3\'82\'a2\'8f\'ea\'8d\'87\'82\'c9\'8a\'4a\'82\'a9\'82\'ea\'82\'e9\'83\'74\'83\'40\'83\'43\'83\'8b/\'83\'74\'83\'48\'83\'8b\'83\'5f\'91\'49\'91\'f0\'83\'5f\'83\'43\'83\'41\'83\'8d\'83\'4f\'82\'cc\'8d\'c5\'8f\'89\'82\'cc\'8f\'ea\'8f\'8a\
+@param a_location (a reference) : \'83\'74\'83\'48\'83\'8b\'83\'5f\'82\'d6\'82\'cc\'8e\'51\'8f\'c6\
+@param a_bool (boolean)\
+@result script object : me\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 set_default_location\cf0 (\cf5 a_location\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _defaultLocation
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 a_location
+\f1 \cf0  
+\f0 \cf2 as
+\f1 \cf0  
+\f0 \cf3 alias
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 set_default_location
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 ----\
+@abstruct Finder\'81\'40\'82\'c5\'91\'49\'91\'f0\'8d\'80\'96\'da\'82\'aa\'96\'b3\'82\'a2\'8f\'ea\'8d\'87\'82\'c9\'8e\'c0\'8d\'73\'82\'b7\'82\'e9\'83\'58\'83\'4e\'83\'8a\'83\'76\'83\'67\'82\'f0\'90\'dd\'92\'e8\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+@description \'90\'dd\'92\'e8\'82\'b5\'82\'bd\'83\'58\'83\'4e\'83\'8a\'83\'76\'83\'67\'82\'cc\'95\'d4\'82\'e8\'92\'6c\'82\'aa get_selection \'82\'cc\'95\'d4\'82\'e8\'92\'6c\'82\'c9\'82\'c8\'82\'e8\'82\'dc\'82\'b7\'81\'42\'83\'66\'83\'74\'83\'48\'83\'8b\'83\'67\'82\'c5\'82\'cd\'8e\'a9\'93\'ae\'93\'49\'82\'c9\'83\'74\'83\'40\'83\'43\'83\'8b/\'83\'74\'83\'48\'83\'8b\'83\'5f\'91\'49\'91\'f0\'83\'5f\'83\'43\'83\'41\'83\'8d\'83\'4f\'82\'f0\'8a\'4a\'82\'ad\'83\'58\'83\'4e\'83\'8a\'83\'76\'83\'67\'82\'aa\'90\'dd\'92\'e8\'82\'b3\'82\'ea\'82\'dc\'82\'b7\'81\'42\'91\'bd\'82\'ad\'82\'cc\'8f\'ea\'8d\'87\'81\'41\'83\'4a\'83\'58\'83\'5e\'83\'80\'82\'c9\'97\'5e\'82\'a6\'82\'e9\'95\'4b\'97\'76\'82\'cd\'82\'c8\'82\'a2\'82\'c5\'82\'b7\'81\'42\
+@param a_script (script object)\
+@result script object : me\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 set_chooser\cf0 (\cf5 a_script\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _chooser
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 a_script
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 set_chooser
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 set_chooser_for_folder\cf0 ()
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _chooser
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 chooser_for_folder\cf0 (\cf2 me\cf0 )
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 set_chooser_for_folder
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 set_chooser_for_file\cf0 ()
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _chooser
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 chooser_for_file\cf0 (\cf2 me\cf0 )
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 set_chooser_for_file
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 current_picker\cf0 (\cf5 a_script\cf0 )
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _picker
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 current_picker
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 set_picker\cf0 (\cf5 a_script\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _picker
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 a_script
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 set_picker
+\f1 \cf0 \
+\
+\
+
+\f0 (*\cf4 !@group Setup Kind Items to Pick Up \
+\
+\'8e\'e6\'93\'be\'82\'b7\'82\'e9\'83\'74\'83\'40\'83\'43\'83\'8b/\'83\'74\'83\'48\'83\'8b\'83\'5f\'82\'cc\'8e\'ed\'97\'de\'82\'f0\'90\'dd\'92\'e8\'82\'b5\'82\'dc\'82\'b7\'81\'42Constructor\'81\'40\'82\'cc\'92\'86\'82\'c5\'8e\'c0\'8d\'73\'82\'b3\'82\'ea\'82\'e9\'82\'cc\'82\'c5\'81\'41\'92\'ca\'8f\'ed\'82\'cd\'8e\'67\'82\'a4\'95\'4b\'97\'76\'82\'aa\'82\'c8\'82\'a2\'82\'cd\'82\'b8\'82\'c5\'82\'b7\'81\'42\'83\'43\'83\'93\'83\'58\'83\'5e\'83\'93\'83\'58\'82\'f0\'90\'b6\'90\'ac\'8c\'e3\'81\'41\'8e\'e6\'93\'be\'82\'b7\'82\'e9\'8d\'80\'96\'da\'82\'cc\'8e\'ed\'97\'de\'82\'f0\'95\'cf\'82\'a6\'82\'bd\'82\'a2\'82\'c6\'82\'ab\'82\'c9\'8e\'67\'82\'a6\'82\'dc\'82\'b7\'81\'42\
+\cf0 *)
+\f1 \
+\
+\
+
+\f0 (*\cf4 !\
+@abstruct \'82\'b7\'82\'d7\'82\'c4\'82\'cc\'83\'74\'83\'40\'83\'43\'83\'8b/\'83\'74\'83\'48\'83\'8b\'83\'5f\'82\'f0\'91\'ce\'8f\'db\'82\'c6\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+@result a reference : FinderSelection \'82\'cc\'83\'43\'83\'93\'83\'58\'83\'5e\'83\'93\'83\'58\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 setup_for_item\cf0 ()
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _picker
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 picker_for_item\cf0 (\cf2 me\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _chooser
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 chooser_for_file\cf0 (\cf2 me\cf0 )
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 setup_for_item
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !\
+@abstruct \'8e\'e6\'93\'be\'82\'b7\'82\'e9\'8d\'80\'96\'da\'82\'f0\'83\'74\'83\'40\'83\'43\'83\'8b\'82\'be\'82\'af\'82\'c9\'90\'a7\'8c\'c0\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+@result a reference : FinderSelection \'82\'cc\'83\'43\'83\'93\'83\'58\'83\'5e\'83\'93\'83\'58\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 setup_for_file\cf0 ()
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _picker
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 picker_for_file\cf0 (\cf2 me\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _chooser
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 chooser_for_file\cf0 (\cf2 me\cf0 )
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 setup_for_file
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !\
+@abstruct \'8e\'e6\'93\'be\'82\'b7\'82\'e9\'8d\'80\'96\'da\'82\'f0\'8f\'91\'97\'de\'83\'74\'83\'40\'83\'43\'83\'8b\'82\'be\'82\'af\'82\'c9\'90\'a7\'8c\'c0\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+@result a reference : FinderSelection \'82\'cc\'83\'43\'83\'93\'83\'58\'83\'5e\'83\'93\'83\'58\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 setup_for_document\cf0 ()
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _picker
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 picker_for_document\cf0 (\cf2 me\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _chooser
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 chooser_for_file\cf0 (\cf2 me\cf0 )
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 setup_for_document
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !\
+@abstruct \'8e\'e6\'93\'be\'82\'b7\'82\'e9\'8d\'80\'96\'da\'82\'f0\'83\'41\'83\'76\'83\'8a\'83\'50\'81\'5b\'83\'56\'83\'87\'83\'93\'83\'74\'83\'40\'83\'43\'83\'8b\'82\'be\'82\'af\'82\'c9\'90\'a7\'8c\'c0\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+@result a reference : FinderSelection \'82\'cc\'83\'43\'83\'93\'83\'58\'83\'5e\'83\'93\'83\'58\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 setup_for_application\cf0 ()
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _picker
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 picker_for_application\cf0 (\cf2 me\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _chooser
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 chooser_for_file\cf0 (\cf2 me\cf0 )
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 setup_for_application
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !\
+@abstruct \'8e\'e6\'93\'be\'82\'b7\'82\'e9\'8d\'80\'96\'da\'82\'f0\'83\'70\'83\'62\'83\'50\'81\'5b\'83\'57\'82\'be\'82\'af\'82\'c9\'90\'a7\'8c\'c0\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+@result a reference : FinderSelection \'82\'cc\'83\'43\'83\'93\'83\'58\'83\'5e\'83\'93\'83\'58\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 setup_for_package\cf0 ()
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _picker
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 picker_for_package\cf0 (\cf2 me\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _chooser
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 chooser_for_file\cf0 (\cf2 me\cf0 )
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 setup_for_package
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !\
+@abstruct \'8e\'e6\'93\'be\'82\'b7\'82\'e9\'8d\'80\'96\'da\'82\'f0\'83\'52\'83\'93\'83\'65\'83\'69\'81\'69\'83\'74\'83\'48\'83\'8b\'83\'5f\'82\'e0\'82\'b5\'82\'ad\'82\'cd\'83\'66\'83\'42\'83\'58\'83\'4e\'81\'6a\'82\'be\'82\'af\'82\'c9\'90\'a7\'8c\'c0\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+@result a reference : FinderSelection \'82\'cc\'83\'43\'83\'93\'83\'58\'83\'5e\'83\'93\'83\'58\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 setup_for_container\cf0 ()
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _picker
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 picker_for_container\cf0 (\cf2 me\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _chooser
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 chooser_for_folder\cf0 (\cf2 me\cf0 )
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 setup_for_container
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !\
+@abstruct \'8e\'e6\'93\'be\'82\'b7\'82\'e9\'8d\'80\'96\'da\'82\'f0\'83\'74\'83\'48\'83\'8b\'83\'5f\'82\'be\'82\'af\'82\'c9\'90\'a7\'8c\'c0\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+@result a reference : FinderSelection \'82\'cc\'83\'43\'83\'93\'83\'58\'83\'5e\'83\'93\'83\'58\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 setup_for_folder\cf0 ()
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _picker
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 picker_for_folder\cf0 (\cf2 me\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _chooser
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 chooser_for_folder\cf0 (\cf2 me\cf0 )
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 setup_for_folder
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !\
+@abstruct \'8e\'e6\'93\'be\'82\'b7\'82\'e9\'8d\'80\'96\'da\'82\'f0\'83\'66\'83\'42\'83\'58\'83\'4e\'82\'be\'82\'af\'82\'c9\'90\'a7\'8c\'c0\'82\'b5\'82\'dc\'82\'b7\'81\'42\
+@result a reference : FinderSelection \'82\'cc\'83\'43\'83\'93\'83\'58\'83\'5e\'83\'93\'83\'58\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 setup_for_disk\cf0 ()
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _picker
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 picker_for_disk\cf0 (\cf2 me\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _chooser
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 chooser_for_folder\cf0 (\cf2 me\cf0 )
+\f1 \
+	
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _defaultLocation
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf3 missing value
+\f1 \cf0  
+\f0 \cf2 then
+\f1 \cf0 \
+		
+\f0 \cf5 set_default_location\cf0 (\cf3 POSIX file
+\f1 \cf0  
+\f0 (\cf2 get
+\f1 \cf0  
+\f0 "/"))
+\f1 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 setup_for_disk
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !@group Utility Handlers \cf0 *)
+\f1 \
+\
+
+\f0 (*\cf4 !\
+@abstruct \'83\'74\'83\'40\'83\'43\'83\'8b\'82\'aa path to me \'82\'c5\'93\'be\'82\'e7\'82\'ea\'82\'e9\'8d\'80\'96\'da\'82\'c6\'93\'af\'82\'b6\'95\'a8\'82\'aa\'82\'c7\'82\'a4\'82\'a9\'92\'b2\'82\'d7\'82\'dc\'82\'b7\'81\'42\
+@param an_item : \'83\'74\'83\'40\'83\'43\'83\'8b\'83\'8a\'83\'74\'83\'40\'83\'8c\'83\'93\'83\'58\
+@result boolean : an_item \'82\'aa path to me \'82\'c6\'88\'ea\'92\'76\'82\'b5\'82\'bd\'82\'e7 true\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 is_same_to_me\cf0 (\cf5 an_item\cf0 )
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 (\cf5 canon_path\cf0 (\cf3 path to
+\f1 \cf0  
+\f0 \cf2 me\cf0 )
+\f1  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf5 canon_path\cf0 (\cf5 an_item\cf0 ))
+\f1 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 is_same_to_me
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 = private handlers  \cf0 *)
+\f1 \
+\
+
+\f0 (*\cf4 == delegate of picker script \cf0 *)
+\f1 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 match_type\cf0 (\cf5 an_item\cf0 )
+\f1 \
+	
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _typeList
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf2 in
+\f1 \cf0  
+\f0 \cf3 missing value
+\f1 \cf0  
+\f0 \cf2 then
+\f1 \cf0 \
+		
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 true
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+	\
+	
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _typeList
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \{\}
+\f1  
+\f0 \cf2 then
+\f1 \cf0 \
+		
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 false
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+	\
+	
+\f0 --\cf4 return (file type of (info for (an_item as alias) without size)) is in my _typeList
+\f1 \cf0 \
+	
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf3 application
+\f1 \cf0  
+\f0 "Finder"
+\f1 \
+		
+\f0 \cf2 try
+\f1 \cf0 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 (\cf3 file type
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf5 an_item
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf2 in
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _typeList\cf0 )
+\f1 \
+		
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf2 error
+\f1 \cf0 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 false
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 try
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 match_type
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 match_suffix\cf0 (\cf5 an_item\cf0 )
+\f1  
+\f0 --\cf4  an_path must be unicode text
+\f1 \cf0 \
+	
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _suffixList
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf3 missing value
+\f1 \cf0  
+\f0 \cf2 then
+\f1 \cf0 \
+		
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 true
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+	\
+	
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _suffixList
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \{\}
+\f1  
+\f0 \cf2 then
+\f1 \cf0 \
+		
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 false
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+	\
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_result
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 false
+\f1 \cf0 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_path
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 an_item
+\f1 \cf0  
+\f0 \cf2 as
+\f1 \cf0  
+\f0 \cf3 Unicode text
+\f1 \cf0 \
+	
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf5 a_path
+\f1 \cf0  
+\f0 \cf2 ends with
+\f1 \cf0  
+\f0 ":"
+\f1  
+\f0 \cf2 then
+\f1 \cf0 \
+		
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_path
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 text
+\f1 \cf0  
+\f0 1
+\f1  
+\f0 \cf2 thru
+\f1 \cf0  
+\f0 -2
+\f1  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf5 a_path
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+	
+\f0 \cf2 repeat
+\f1 \cf0  
+\f0 \cf2 with
+\f1 \cf0  
+\f0 \cf5 a_suffix
+\f1 \cf0  
+\f0 \cf2 in
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _suffixList
+\f1 \cf0 \
+		
+\f0 \cf2 if
+\f1 \cf0  
+\f0 (\cf5 a_path
+\f1 \cf0  
+\f0 \cf2 ends with
+\f1 \cf0  
+\f0 \cf5 a_suffix\cf0 )
+\f1  
+\f0 \cf2 then
+\f1 \cf0 \
+			
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_result
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 true
+\f1 \cf0 \
+			
+\f0 \cf2 exit
+\f1 \cf0  
+\f0 \cf2 repeat
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 repeat
+\f1 \cf0 \
+	\
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf5 a_result
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 match_suffix
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 resolve_alias\cf0 (\cf5 an_item\cf0 )
+\f1 \
+	
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf3 application
+\f1 \cf0  
+\f0 "Finder"
+\f1 \
+		
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _withResolveAlias
+\f1 \cf0  
+\f0 \cf2 and
+\f1 \cf0  
+\f0 (\cf3 class
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf5 an_item
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf3 alias file\cf0 )
+\f1  
+\f0 \cf2 then
+\f1 \cf0 \
+			
+\f0 \cf2 try
+\f1 \cf0 \
+				
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 an_item
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 original item
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf5 an_item
+\f1 \cf0 \
+			
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 try
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf5 an_item
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 resolve_alias
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 == othres \cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 canon_path\cf0 (\cf5 an_item\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_path
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 POSIX path
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf5 an_item
+\f1 \cf0 \
+	
+\f0 \cf2 if
+\f1 \cf0  
+\f0 (\cf5 a_path
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf2 not
+\f1 \cf0  
+\f0 "/")
+\f1  
+\f0 \cf2 and
+\f1 \cf0  
+\f0 (\cf5 a_path
+\f1 \cf0  
+\f0 \cf2 ends with
+\f1 \cf0  
+\f0 "/")
+\f1  
+\f0 \cf2 then
+\f1 \cf0 \
+		
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_path
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 text
+\f1 \cf0  
+\f0 1
+\f1  
+\f0 \cf2 thru
+\f1 \cf0  
+\f0 -2
+\f1  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf5 a_path
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf5 a_path
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 canon_path
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 is_same_path\cf0 (\cf5 item1\cf0 ,
+\f1  
+\f0 \cf5 item2\cf0 )
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 (\cf5 canon_path\cf0 (\cf5 item1\cf0 )
+\f1  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf5 canon_path\cf0 (\cf5 item2\cf0 ))
+\f1 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 is_same_path
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 except_myself\cf0 (\cf5 an_item\cf0 )
+\f1 \
+	
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf5 is_same_to_me\cf0 (\cf5 an_item\cf0 )
+\f1  
+\f0 \cf2 then
+\f1 \cf0 \
+		
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _useChooser
+\f1 \cf0  
+\f0 \cf2 then
+\f1 \cf0 \
+			
+\f0 --\cf4 log "before run chooser in except_myself"
+\f1 \cf0 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _chooser
+\f1 \cf0 \
+		
+\f0 \cf2 else
+\f1 \cf0 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 missing value
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+	
+\f0 \cf2 else
+\f1 \cf0 \
+		
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \{\cf5 an_item\cf0 \}
+\f1 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 except_myself
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 debug\cf0 ()
+\f1 \
+	
+\f0 \cf3 boot
+\f1 \cf0  
+\f0 (\cf3 module loader\cf0 )
+\f1  
+\f0 \cf3 for
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+	
+\f0 --\cf4 set item_picker to make_for_folder()
+\f1 \cf0 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 item_picker
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 make_for_item\cf0 ()
+\f1 \
+	
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf5 item_picker
+\f1 \cf0 \
+		
+\f0 \cf5 set_chooser_for_folder\cf0 ()
+\f1 \
+		
+\f0 \cf5 set_prompt_message\cf0 ("Choose a disk of a disk image")
+\f1 \
+		
+\f0 \cf5 set_use_insertion_location\cf0 (\cf3 true\cf0 )
+\f1 \
+		
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 get_selection\cf0 ()
+\f1 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+	
+\f0 --\cf4 log a_list
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 debug
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 debug_folder\cf0 ()
+\f1 \
+	
+\f0 \cf3 boot
+\f1 \cf0  
+\f0 (\cf3 module loader\cf0 )
+\f1  
+\f0 \cf3 for
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+	
+\f0 --\cf4 tell make_for_container()
+\f1 \cf0 \
+	
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf5 make_for_folder\cf0 ()
+\f1 \
+		
+\f0 --\cf4 set_prompt_message("Choose text file or PDF file.")
+\f1 \cf0 \
+		
+\f0 --\cf4 set_types(\{"TEXT", "PDF "\})
+\f1 \cf0 \
+		
+\f0 --\cf4 set_extensions(\{"tion", ".pdf"\})
+\f1 \cf0 \
+		
+\f0 \cf3 log
+\f1 \cf0  
+\f0 "before set_use_insertion_location : "
+\f1  
+\f0 &
+\f1  
+\f0 (\cf5 _useInsertionLocation
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf2 it\cf0 )
+\f1 \
+		
+\f0 \cf5 set_use_insertion_location\cf0 (\cf3 true\cf0 )
+\f1 \
+		
+\f0 \cf3 log
+\f1 \cf0  
+\f0 "after set_use_insertion_location : "
+\f1  
+\f0 &
+\f1  
+\f0 (\cf5 _useInsertionLocation
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf2 it\cf0 )
+\f1 \
+		
+\f0 \cf5 get_selection\cf0 ()
+\f1 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 debug_folder
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 debug_document\cf0 ()
+\f1 \
+	
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf5 make_for_document\cf0 ()
+\f1 \
+		
+\f0 \cf5 set_prompt_message\cf0 ("Choose text file or PDF file.")
+\f1 \
+		
+\f0 --\cf4 set_resolve_alias(false)
+\f1 \cf0 \
+		
+\f0 \cf3 log
+\f1 \cf0  
+\f0 \cf5 get_selection\cf0 ()
+\f1 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 debug_document
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0 \
+	
+\f0 --\cf4 return debug()
+\f1 \cf0 \
+	
+\f0 --\cf4 return debug_folder()
+\f1 \cf0 \
+	
+\f0 --\cf4 return debug_document()
+\f1 \cf0 \
+	
+\f0 \cf2 try
+\f1 \cf0 \
+		
+\f0 \cf3 show helpbook
+\f1 \cf0  
+\f0 (\cf3 path to
+\f1 \cf0  
+\f0 \cf2 me\cf0 )
+\f1  
+\f0 \cf2 with
+\f1 \cf0  
+\f0 \cf3 recovering InfoPlist
+\f1 \cf0 \
+	
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf2 error
+\f1 \cf0  
+\f0 \cf5 msg
+\f1 \cf0  
+\f0 \cf3 number
+\f1 \cf0  
+\f0 \cf5 errno
+\f1 \cf0 \
+		
+\f0 \cf3 display alert
+\f1 \cf0  
+\f0 (\cf5 msg
+\f1 \cf0  
+\f0 &
+\f1  
+\f0 \cf3 return
+\f1 \cf0  
+\f0 &
+\f1  
+\f0 \cf5 errno\cf0 )
+\f1 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 try
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf3 run}
