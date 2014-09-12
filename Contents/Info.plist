@@ -18,14 +18,18 @@
 	<string>copyright 1999-2010, Tetsuro KURITA</string>
 	<key>WindowState</key>
 	<dict>
+		<key>dividerCollapsed</key>
+		<false/>
+		<key>eventLogLevel</key>
+		<integer>-1</integer>
 		<key>name</key>
 		<string>ScriptWindowState</string>
 		<key>positionOfDivider</key>
 		<real>520</real>
 		<key>savedFrame</key>
-		<string>178 145 798 722 0 0 1440 878 </string>
+		<string>445 156 798 722 0 0 1440 878 </string>
 		<key>selectedTabView</key>
-		<string>result</string>
+		<string>description</string>
 	</dict>
 </dict>
 </plist>
