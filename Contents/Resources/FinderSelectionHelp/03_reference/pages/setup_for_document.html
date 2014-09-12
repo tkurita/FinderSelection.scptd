@@ -9,25 +9,28 @@
 		<link href="../assets/default.css" type="text/css" rel="stylesheet" media="all" />
 		<link href="../assets/handler_page.css" type="text/css" rel="stylesheet" media="all" />
 		<link href="../assets/applescript.css" type="text/css" rel="stylesheet" media="all" />
-		<meta name="keywords" content="setup_for_document" />
+		<meta name="keywords" content="setup_for_document, FinderSelection" />
 		<script type="text/javascript" src="../assets/run_helpscript.js"></script>
+		<link href="assets/manual" id="HelpBookRoot" />
 	</head>
 
 	<body>
-		<div style="visibility:hidden"><a href="../../" id="HelpBookRoot"></a></div>
-		<div id="smartheader">
-			<table width="95%" border="0" cellspacing="2" cellpadding="0">
-				<tr>
-					<td align="left"><a href="../contents.html">FinderSelection Reference</a></td>
-					<td align="right"><a onclick="return runHelpScript(this)" href="../assets/editScript.scpt">Edit Script</a></td>
-				</tr>
-			</table>
+		<div id="navi-bar">
+			<div class="edit-script-link">
+			<a onclick="return runHelpScriptWithBundleRoot(this)" href="../assets/editScript.scpt">Edit Script</a>
+			</div>
+			<div class="left-contents">
+			<div class="to-root">
+			<a href="../index.html">FinderSelection Reference</a>
+			</div>
+			</div>
 		</div>
-<div class="elementTitle">
+		<div id="contents">
+		<div class="elementTitle">
 <a id="setup_for_document" name="setup_for_document">setup_for_document</a>
 </div>
 <p class="sourceCode">
-<span class="userDefine">setup_for_document</span>()
+<span class="userDefine">setup_for_document</span><span class="normal">()</span>
 <a href="../assets/setClipboard.scpt" onclick="return runHelpScriptWithInnerText(this)">
 <img src="../assets/Clipboard24.png" alt="copy to clipboard" align="right" />
 </a></p>
@@ -36,6 +39,7 @@
 Result
 </div>
 <p>a reference : FinderSelection のインスタンス</p>
+		</div>
 	</body>
 
 </html>

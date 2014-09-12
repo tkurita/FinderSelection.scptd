@@ -9,29 +9,34 @@
 		<link href="../assets/default.css" type="text/css" rel="stylesheet" media="all" />
 		<link href="../assets/handler_page.css" type="text/css" rel="stylesheet" media="all" />
 		<link href="../assets/applescript.css" type="text/css" rel="stylesheet" media="all" />
-		<meta name="keywords" content="set_use_insertion_location" />
+		<meta name="keywords" content="set_use_insertion_location, FinderSelection" />
 		<script type="text/javascript" src="../assets/run_helpscript.js"></script>
+		<link href="assets/manual" id="HelpBookRoot" />
 	</head>
 
 	<body>
-		<div style="visibility:hidden"><a href="../../" id="HelpBookRoot"></a></div>
-		<div id="smartheader">
-			<table width="95%" border="0" cellspacing="2" cellpadding="0">
-				<tr>
-					<td align="left"><a href="../contents.html">FinderSelection Reference</a></td>
-					<td align="right"><a onclick="return runHelpScript(this)" href="../assets/editScript.scpt">Edit Script</a></td>
-				</tr>
-			</table>
+		<div id="navi-bar">
+			<div class="edit-script-link">
+			<a onclick="return runHelpScriptWithBundleRoot(this)" href="../assets/editScript.scpt">Edit Script</a>
+			</div>
+			<div class="left-contents">
+			<div class="to-root">
+			<a href="../index.html">FinderSelection Reference</a>
+			</div>
+			</div>
 		</div>
-<div class="elementTitle">
+		<div id="contents">
+		<div class="elementTitle">
 <a id="set_use_insertion_location" name="set_use_insertion_location">set_use_insertion_location</a>
 </div>
 <p class="sourceCode">
-<span class="userDefine">set_use_insertion_location</span>(<span class="userDefine">a_bool</span>)
+<span class="userDefine">set_use_insertion_location</span><span class="normal">(</span><span class="userDefine">a_bool</span><span class="normal">)</span>
 <a href="../assets/setClipboard.scpt" onclick="return runHelpScriptWithInnerText(this)">
 <img src="../assets/Clipboard24.png" alt="copy to clipboard" align="right" />
 </a></p>
 <p>Finder で選択項目が無い場合、 選択されている場所を取得するかどうか。</p>
+
+
 <p>「選択されている場所」とは、Finder でメニュー「新規フォルダ」でフォルダが作られる場所です。</p>
 <p>フォルダを取得する可能性があるインスタンス（<a href="make_for_item.html">make_for_item</a> や <a href="make_for_folder.html">make_for_folder</a> などで生成）の場合のみに効果があります。</p>
 <p>デフォルトでは false が設定されています。</p>
@@ -45,6 +50,7 @@ Parameters
 Result
 </div>
 <p>script object : me</p>
+		</div>
 	</body>
 
 </html>

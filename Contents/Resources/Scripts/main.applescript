@@ -1,6 +1,6 @@
 property name : "FinderSelection"
 (*!@title FinderSelection Reference
-* Version : 2.0.8b
+* Version : 2.0.8
 * Author : Tetsuro KURITA ((<tkurita@mac.com>))
 
 Finder の選択項目を取得する AppleScript モジュールです。以下のような機能を簡便に行えます。
@@ -424,11 +424,10 @@ on get_selection()
 	--log "start get_selection"
 	local a_list, an_item, n_select
 	set a_list to run my _picker
-	--log "after run picker in get_selection"
+	-- log "after run picker in get_selection"
 	set n_select to length of a_list
 	if n_select is 0 then
 		if my _useChooser then
-			--log "before run chooser in get_selection"
 			set a_list to run my _chooser
 		else
 			set a_list to missing value
@@ -439,6 +438,14 @@ on get_selection()
 	return a_list
 end get_selection
 
+(*!@abstruct
+Return whether an item returned by ((<get_selection>)) is Finder's insertion location or not.
+@result boolean : true if retuend item by ((<get_selection>)) is Finder's insertion location.
+*)
+on is_insertion_location()
+	return my _picker's is_insertion_location()
+end is_insertion_location
+
 (*!@group Accessor Methods 
 
 FinderSelection のインスタンスの動作をカスタマイズします。よく使う method は次の ３つだと思います。
@@ -448,8 +455,7 @@ FinderSelection のインスタンスの動作をカスタマイズします。�
 * ((<set_prompt_message>))
 *)
 
-(*!
-@abstruct　取得したいファイルのファイルタイプを設定します。
+(*!@abstruct 取得したいファイルのファイルタイプを設定します。
 @param type_list (list) : ファイルタイプのリスト ex) {"TEXT", "PDF "}
 @result script object : me
 *)
@@ -461,8 +467,7 @@ on set_types(type_list)
 	return me
 end set_types
 
-(*!
-@abstruct　取得したいファイル/フォルダの拡張子を設定します。
+(*!@abstruct 取得したいファイル/フォルダの拡張子を設定します。
 @param extenstion_list (list) : 拡張子のリスト ex) {".rtf", ".pdf"}
 @result script object : me
 *)
@@ -678,12 +683,18 @@ end setup_for_disk
 (*!@group Utility Handlers *)
 
 (*!
-@abstruct ファイルが path to me で得られる項目と同じ物がどうか調べます。
+@abstruct ファイルが path to me もしくは path to current application で得られる項目と同じ物がどうか調べます。
 @param an_item : ファイルリファレンス
-@result boolean : an_item が path to me と一致したら true
+@result boolean : an_item が path to me もしくは path to current application と一致したら true
 *)
 on is_same_to_me(an_item)
-	return (canon_path(path to me) is canon_path(an_item))
+	--log "start is_same_to_me"
+	try
+		set my_self to path to me
+	on error
+		set my_self to path to current application
+	end try
+	return (canon_path(my_self) is canon_path(an_item))
 end is_same_to_me
 
 (*= private handlers  *)
@@ -746,6 +757,7 @@ end resolve_alias
 
 (*== othres *)
 on canon_path(an_item)
+	--log "start canon_path"
 	set a_path to POSIX path of an_item
 	if (a_path is not "/") and (a_path ends with "/") then
 		set a_path to text 1 thru -2 of a_path
@@ -758,6 +770,7 @@ on is_same_path(item1, item2)
 end is_same_path
 
 on except_myself(an_item)
+	--log "start except_myself"
 	if is_same_to_me(an_item) then
 		if my _useChooser then
 			--log "before run chooser in except_myself"
@@ -816,4 +829,3 @@ on run
 		display alert (msg & return & errno)
 	end try
 end run
-

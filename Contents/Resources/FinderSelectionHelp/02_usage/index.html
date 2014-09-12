@@ -1,19 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
-	<head>
-		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-		<meta content="noindex" name="robots" />
+  <!-- InstanceBegin template="../../../../../_Templates/helpbook-page-with-applescript.dwt" -->
 
-		<title>FinderSelection Help</title>
-	</head>
+    <head>
+      <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+      <title>Usage</title>
+      <meta name="keywords" content="FinderSelection, 使い方, サンプル, sample, Usage" />
+      <meta name="description" content="FinderSelection の使い方とサンプル" />
+      <link href="../01_synopsis/assets/AppleScript.css" rel="stylesheet" type="text/css" media="all" />
+      <!-- #BeginHeadLocked "" -->
+        <link href="../01_synopsis/assets/helpbook-default.css" type="text/css" rel="stylesheet" media="all" />
+        <link href="../01_synopsis/assets/helpbook-navibar.css" type="text/css" rel="stylesheet" media="all" />
+        <script type="text/javascript" src="../01_synopsis/assets/navibar-jump.js"></script>
+        <link id="helpviewer-handler-helper" href="../01_synopsis/assets/helpviewer-handler-helper.scpt" />
+        <script type="text/javascript" src="../01_synopsis/assets/helpviewer-handler-enable.js"></script>
+      <!-- #EndHeadLocked -->
+    </head>
 
-	<frameset cols="230,9,*" border="0" frameborder="no" framespacing="0">
-		<frame name="TOC" src="../toc.html" noresize="noresize" />
-		<frame name="Shadow" src="../pages/shadow.html" noresize="noresize" scrolling="no" />
-		<frame name="Content" src="contents.html" />
-	</frameset>
+    <body>
+      <!-- InstanceBeginEditable name="navi-bar" --><div id="navi-bar"><span class="navibar-item"><a href="../index.html">FinderSelection Help</a></span><span class="navibar-item">Usage</span></div>
+<div class="prev-next-item"><a href="../01_synopsis/index.html"><span class="navibar-prev">Synopsis</span></a>|<a href="../03_reference/index.html"><span class="navibar-next">FinderSelection Reference</span></a></div><!-- InstanceEndEditable -->
+      <div id="contents">
+        <!-- InstanceBeginEditable name="Body" -->
+          <h1>Usage</h1>
+          <p>処理の流れは次のようになります。</p>
+          <ol>
+            <li>Constructor Method によって、FinderSelection のインスタンスを生成する。どの Constructor を使うかによって、取得するファイル/フォルダの種類が決まる。</li>
+            <li><a href="../03_reference/pages/set_prompt_message.html">set_prompt_message</a> を使ってファイル/フォルダ選択ダイアログのメッセージを設定する。
+              <ul>
+                <li>ファイル/フォルダ選択ダイアログは条件にあった選択物が無い場合に開かれます。</li>
+              </ul>
+            </li>
+            <li>必要があれば、<a href="../03_reference/pages/set_types.html">set_types</a>, <a href="../03_reference/pages/set_extensions.html">set_extensions</a> によって、ファイルタイプ、拡張子の条件を設定する。
+              <ul>
+                <li>set_types, と set_extensions を同時に設定した場合、どちらかの条件に一致したら目的のファイルと見なします。</li>
+              </ul>
+            </li>
+            <li><a href="../03_reference/pages/get_selection.html">get_selection</a> によって、条件にあった、Finder の選択物を取得する。</li>
+          </ol>
+          <p>テキストファイルと PDF ファイルを取得する例を示します。</p>
+          <div class="sourceCode">
+            <div>
+              <span class="langKeyword">property</span> <span class="userDefine">FinderSelection</span> <span class="normal">:</span> <span class="appKeyword">module</span></div>
+            <div>
+              <span class="appKeyword">boot</span> <span class="normal">(</span><span class="appKeyword">module loader</span><span class="normal">)</span> <span class="appKeyword">for</span> <span class="langKeyword">me</span></div>
+            <br />
+            <div>
+              <span class="langKeyword">set</span> <span class="userDefine">file_picker</span> <span class="langKeyword">to</span> <span class="userDefine">FinderSelection</span><span class="normal">'s</span> <span class="userDefine">make_for_file</span><span class="normal">()</span></div>
+            <br />
+            <div>
+              <span class="langKeyword">tell</span> <span class="userDefine">file_picker</span></div>
+            <div style="text-indent:4ex;">
+              <span class="userDefine">set_prompt_message</span><span class="normal">(&quot;Choose text file or PDF file.&quot;)</span></div>
+            <div style="text-indent:4ex;">
+              <span class="userDefine">set_types</span><span class="normal">({&quot;TEXT&quot;,</span> <span class="normal">&quot;PDF &quot;})</span></div>
+            <div style="text-indent:4ex;">
+              <span class="userDefine">set_extensions</span><span class="normal">({&quot;.txt&quot;,</span> <span class="normal">&quot;.pdf&quot;})</span></div>
+            <div style="text-indent:4ex;">
+              <span class="userDefine">get_selection</span><span class="normal">()</span></div>
+            <div>
+              <span class="langKeyword">end</span> <span class="langKeyword">tell</span></div>
+            <div class="scriptButton" >
+              <input type="button" value="Sample" onclick="location.href='applescript://com.apple.scripteditor?action=new&amp;script=property%20FinderSelection%20:%20module%0Dboot%20(module%20loader)%20for%20me%0D%0Dset%20file_picker%20to%20FinderSelection%27s%20make_for_file()%0D%0Dtell%20file_picker%0D%09set_prompt_message(%22Choose%20text%20file%20or%20PDF%20file.%22)%0D%09set_types(%7B%22TEXT%22,%20%22PDF%20%22%7D)%0D%09set_extensions(%7B%22.txt%22,%20%22.pdf%22%7D)%0D%09get_selection()%0Dend%20tell%0D'" /></div>
+          </div>
+        <!-- InstanceEndEditable --></div>
+      <!-- InstanceBeginEditable name="prev-next-item" --><div class="prev-next-item"><a href="../01_synopsis/index.html"><span class="navibar-prev">Synopsis</span></a>|<a href="../03_reference/index.html"><span class="navibar-next">FinderSelection Reference</span></a></div><!-- InstanceEndEditable -->
+      <div class="footer">
+        <p>This page was last built on <csobj format="MedDate" h="10" region="0" t="DateTime" w="67">Fri, Sep 12, 2014</csobj> ; <csobj format="LongTime" h="10" region="0" t="DateTime" w="45">7:26:41 PM</csobj> . Thanks for checking it out!</p>
+      </div>
+    </body>
+
+  <!-- InstanceEnd -->
 
 </html>
