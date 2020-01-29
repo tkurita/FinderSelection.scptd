@@ -134,38 +134,39 @@ Utility Handlers
 		<div id="contents">
 		<h1>FinderSelection Reference</h1>
 <ul>
-<li>Version : 2.1</li>
+<li>Version : 2.1.1</li>
 <li>Author : Tetsuro KURITA <a href="mailto:scriptfactory@mac.com">scriptfactory@mac.com</a></li>
 <li>Requirements : OS X 10.9 or later</li>
 <li><a href="http://www.script-factory.net/XModules/FiderSelection/index.html">Home page</a> || <a href="http://www.script-factory.net/XModules/FinderSelection/changelog.html">ChangeLog</a> || <a href="https://github.com/tkurita/FinderSelection.scptd">Repository</a> </li>
 </ul>
-<p>Finder の選択項目を取得する AppleScript ライブラリです。以下のような処理を簡便に行えます。</p>
-<ul>
-<li>Finder の選択物の中から必要なもの（種類、ファイルタイプ、拡張子 で指定）だけを選び出します。</li>
-<li>選択物がなかったり条件に該当するものがなかったら、ファイル選択ダイアログを開きます。</li>
-<li>Droplet/Applet が Finder からダブルクリックによって起動されたら、ファイル選択ダイアログ を開きます。</li>
-<li>選択物中にエイリアスファイルが含まれていたら、オリジナルへの参照を取得してオリジナルが条件に該当するか調べます。
-<ul>
-<li>エイリアスファイルのオリジナルを求めない動作を設定する事もできます。</li>
-</ul>
-</li>
-</ul>
-<p>処理の流れは次のようになります。</p>
+<p>FinderSelection is an AppleScriptLibrary to obtain items meeting specified conditions from selected items in Finder.</p>
+<p>By using FinderSelection, following complex sequence can be easily performed with several lines.</p>
 <ol>
-<li><a href="#Constructors">Constructor</a> Method によって、FinderSelection のインスタンスを生成する。どの <a href="#Constructors">Constructor</a> を使うかによって、取得するファイル/フォルダの種類が決まる。</li>
-<li><a href="pages/set_prompt_message.html">set_prompt_message</a> を使ってファイル/フォルダ選択ダイアログのメッセージを設定する。
+<li>Obtain Finder's selection filterd with conditions of specified kind, file type or path extension.</li>
+<li>If items matched with the conditions did not exist, a panel to select files will be opened.</li>
+<li>In the case of you script is an applet or a droplet and the application is launched with double clicking in Finder, a panel to select files will be opened.</li>
+<li>If alias files are included in selected items, the originals are checked with the conditions.
 <ul>
-<li>ファイル/フォルダ選択ダイアログは条件にあった選択物が無い場合に開かれます。</li>
+<li>The behaivior can be changed to prevent following originals at setting.</li>
 </ul>
 </li>
-<li>必要があれば、<a href="pages/set_types.html">set_types</a>, <a href="pages/set_extensions.html">set_extensions</a> によって、URI、ファイルタイプ、拡張子の条件を設定する。
-<ul>
-<li><a href="pages/set_types.html">set_types</a>, と <a href="pages/set_extensions.html">set_extensions</a> を同時に設定した場合、どちらかの条件に一致したら目的のファイルと見なします。</li>
-</ul>
-</li>
-<li><a href="pages/get_selection.html">get_selection</a> によって、条件にあった、Finder の選択物を取得する。</li>
 </ol>
-<p>テキストファイルと PDF ファイルを取得する例を示します。</p>
+<p>Actual sequence of code is as follows.</p>
+<ol>
+<li>Generate an instance of FinderSelection by <a href="#Constructors">Constructor</a> methods. Choose <a href="#Constructors">Constructor</a> depending on kind of files and folders you want.</li>
+<li>Set a message displayed in the open panel by <a href="pages/set_prompt_message.html">set_prompt_message</a>.
+<ul>
+<li>The open panel will apear when thre are not items matched with the conditions.</li>
+</ul>
+</li>
+<li>URI, file tyepe and path extension can be included in the conditions by <a href="pages/set_types.html">set_types</a>, <a href="pages/set_extensions.html">set_extensions</a>.
+<ul>
+<li>When both of <a href="pages/set_types.html">set_types</a> and <a href="pages/set_extensions.html">set_extensions</a> are set, target items will match with either file type or path extension.</li>
+</ul>
+</li>
+<li>By <a href="pages/get_selection.html">get_selection</a>, you can take a list of items matched with the conditions </li>
+</ol>
+<p>The following script is a sample to obtain text files and PDF files from Finder's selection.</p>
 <div class="sourceCode">
 <div class="scriptButton">
     <input type="button" value="Open this script" onclick="document.location = this.src" src="applescript://com.apple.scripteditor?action=new&amp;script=use%20FinderSelection%20:%20script%20%22FinderSelection%22%0D%0Dset%20file_picker%20to%20FinderSelection%27s%20make_for_file()%0D%0Dtell%20file_picker%0D%09set_prompt_message(%22Choose%20text%20file%20or%20PDF%20file.%22)%0D%09set_types(%7B%22com.apple.traditional-mac-plain-text%22,%20%22TEXT%22,%20%22PDF%20%22%7D)%0D%09set_extensions(%7B%22.txt%22,%20%22.pdf%22%7D)%0D%09get_selection()%0Dend%20tell%0D%20" />
@@ -197,72 +198,73 @@ Utility Handlers
 </div>
 </div>
 <h2 id="Constructors">Constructors</h2>
-<p>Finder から取得したいファイル/フォルダの種類に応じたインスタンスを生成します。</p>
+<p>Generate an instance depending on kind of items you want from Finder's selection</p>
 <h3 id="make_for_item"><a href="pages/make_for_item.html">make_for_item</a></h3>
-<p>Finder で選択されているファイル/フォルダをすべて取得するオブジェクトを生成します。</p>
+<p>Genegate an instance to obtain all of selected files and folders in Finder.</p>
 <h3 id="make_for_file"><a href="pages/make_for_file.html">make_for_file</a></h3>
-<p>選択されているものの中から、ファイルを取得するオブジェクトを生成します。</p>
+<p>Generate an instance to pick up files from selection in Finder.</p>
 <h3 id="make_for_document"><a href="pages/make_for_document.html">make_for_document</a></h3>
-<p>選択されているものの中から、書類ファイルを取得するオブジェクトを生成します。</p>
+<p>Generate an instance to pick up documents from selection in Finder.</p>
 <h3 id="make_for_application"><a href="pages/make_for_application.html">make_for_application</a></h3>
-<p>選択されているものの中から、アプリケーションを取得するオブジェクトを生成します。</p>
+<p>Generate an instance to pick up applications from selection in Finder.</p>
 <h3 id="make_for_package"><a href="pages/make_for_package.html">make_for_package</a></h3>
-<p>選択されているものの中から、パッケージを取得するオブジェクトを生成します。</p>
+<p>Generate an instance to pick up packages from selection in Finder.</p>
 <h3 id="make_for_container"><a href="pages/make_for_container.html">make_for_container</a></h3>
-<p>選択されているものの中から、ディスクもしくはフォルダを取得するオブジェクトを生成します。</p>
+<p>Generate an instance to pick up disks or folders from selection in Finder.</p>
 <h3 id="make_for_folder"><a href="pages/make_for_folder.html">make_for_folder</a></h3>
-<p>選択されているものの中から、フォルダを取得するオブジェクトを生成します。</p>
+<p>Generate an instance to pick up folders from selection in Finder.</p>
 <h3 id="make_for_disk"><a href="pages/make_for_disk.html">make_for_disk</a></h3>
-<p>選択されているものの中から、ディスクを取得するオブジェクトを生成します。</p>
+<p>Generate an instance to pick up disks from selection in Finder.</p>
 <h2 id="Getting_Finder's_Selection">Getting Finder's Selection </h2>
 <h3 id="get_selection"><a href="pages/get_selection.html">get_selection</a></h3>
-<p>Finder で選択されている項目を取得します。</p>
+<p>Obtain Finder's selection as a list.</p>
 <h3 id="is_insertion_location"><a href="pages/is_insertion_location.html">is_insertion_location</a></h3>
 <p>Return whether an item returned by <a href="pages/get_selection.html">get_selection</a> is Finder's insertion location or not.</p>
 <h2 id="Accessor_Methods">Accessor Methods </h2>
-<p>FinderSelection のインスタンスの動作をカスタマイズします。よく使う method は次の ３つだと思います。</p>
+<p>You can customize behaivior of an instance of FinderSlection.Following three mehods will be frequently used.</p>
 <ul>
 <li><a href="pages/set_types.html">set_types</a></li>
 <li><a href="pages/set_extensions.html">set_extensions</a></li>
 <li><a href="pages/set_prompt_message.html">set_prompt_message</a></li>
 </ul>
 <h3 id="set_types"><a href="pages/set_types.html">set_types</a></h3>
-<p>取得したいファイルの UTI もしくはファイルタイプを設定します。</p>
+<p>set UTIs or file types of items you want.</p>
 <h3 id="set_extensions"><a href="pages/set_extensions.html">set_extensions</a></h3>
-<p>取得したいファイル/フォルダの拡張子を設定します。</p>
+<p>Set path extensions of items you want.</p>
 <h3 id="set_prompt_message"><a href="pages/set_prompt_message.html">set_prompt_message</a></h3>
-<p>ファイル/フォルダ選択ダイアログで表示されるメッセージ</p>
+<p>Set a message to displayed in open panel.</p>
 <h3 id="set_use_chooser"><a href="pages/set_use_chooser.html">set_use_chooser</a></h3>
-<p>Finder で選択項目が無い場合、 ファイル/フォルダ選択ダイアログを開くかどうか。</p>
+<p>Whether open panel will be opened or not when threre are not items matched with the conditions in selection in Finder.</p>
 <h3 id="set_use_insertion_location"><a href="pages/set_use_insertion_location.html">set_use_insertion_location</a></h3>
-<p>Finder で選択項目が無い場合、 選択されている場所を取得するかどうか。</p>
+<p>Whether insertion location is obtained as a selected item or not, when no items are selected in Finder.</p>
 <h3 id="set_allow_myself"><a href="pages/set_allow_myself.html">set_allow_myself</a></h3>
-<p>Finder で自分自身（スクリプトファイルやアプリケーション）が選択されている場合、選択項目に含めるかどうか。</p>
+<p>If my self(a script or an application running FinderSelection) is selected in Finder, whether my selft is treated as a member of selection or not.</p>
 <h3 id="set_resolve_alias"><a href="pages/set_resolve_alias.html">set_resolve_alias</a></h3>
-<p>エイリアスファイルが Finder で選択されている時に、そのオリジナルを求めるかどうか</p>
+<p>Whether original of alias is searched for or not.</p>
 <h3 id="set_default_location"><a href="pages/set_default_location.html">set_default_location</a></h3>
-<p>Finder で選択項目が無い場合に開かれるファイル/フォルダ選択ダイアログの最初の場所</p>
+<p>The default location of the open panel which is displayed when no items are selected in Finder.</p>
 <h2 id="Setup_Kind_Items_to_Pick_Up">Setup Kind Items to Pick Up </h2>
-<p>取得するファイル/フォルダの種類を設定します。Constructor　の中で実行されるので、通常は使う必要がないはずです。インスタンスを生成後、取得する項目の種類を変えたいときに使えます。</p>
+<p>Change settings of kinds of file and folder to find for instance.Usually these methods are not required, because these methods are called in constructor methods.</p>
+<p>These methods are useful to change settings of an instastance after generating an instance.</p>
 <h3 id="setup_for_item"><a href="pages/setup_for_item.html">setup_for_item</a></h3>
-<p>すべてのファイル/フォルダを対象とします。</p>
+<p>Make all files and folders targets.</p>
 <h3 id="setup_for_file"><a href="pages/setup_for_file.html">setup_for_file</a></h3>
-<p>取得する項目をファイルだけに制限します。</p>
+<p>Make only files targets.</p>
 <h3 id="setup_for_document"><a href="pages/setup_for_document.html">setup_for_document</a></h3>
-<p>取得する項目を書類ファイルだけに制限します。</p>
+<p>Make only document files targets.</p>
 <h3 id="setup_for_application"><a href="pages/setup_for_application.html">setup_for_application</a></h3>
-<p>取得する項目をアプリケーションファイルだけに制限します。</p>
+<p>Make only applications targets.</p>
 <h3 id="setup_for_package"><a href="pages/setup_for_package.html">setup_for_package</a></h3>
-<p>取得する項目をパッケージだけに制限します。</p>
+<p>Make only packages targets.</p>
 <h3 id="setup_for_container"><a href="pages/setup_for_container.html">setup_for_container</a></h3>
-<p>取得する項目をコンテナ（フォルダもしくはディスク）だけに制限します。</p>
+<p>Make containers (disks and folders) targets.</p>
 <h3 id="setup_for_folder"><a href="pages/setup_for_folder.html">setup_for_folder</a></h3>
-<p>取得する項目をフォルダだけに制限します。</p>
+<p>Make only folders targets.</p>
 <h3 id="setup_for_disk"><a href="pages/setup_for_disk.html">setup_for_disk</a></h3>
-<p>取得する項目をディスクだけに制限します。</p>
+<p>Make only disks targets.</p>
 <h2 id="Utility_Handlers">Utility Handlers</h2>
 <h3 id="is_same_to_me"><a href="pages/is_same_to_me.html">is_same_to_me</a></h3>
-<p>ファイルが path to me もしくは path to current application で得られる項目と同じ物がどうか調べます。</p>
+<p>Whether the passed item is identical to the result of &quote;path to me&quote; or &quote;path to current application&quote;.</p>
 		</div>
 		<!-- InstanceBeginEditable name="prev-next-item" --><!-- InstanceEndEditable -->
 	</body>

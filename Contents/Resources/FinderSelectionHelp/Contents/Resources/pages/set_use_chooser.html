@@ -10,7 +10,7 @@
 		<link href="../assets/handler_page.css" type="text/css" rel="stylesheet" media="all" />
 		<link href="../assets/applescript.css" type="text/css" rel="stylesheet" media="all" />
 		<meta name="keywords" content="set_use_chooser, FinderSelection" />
-		<script type="text/javascript" src="../assets/run_helpscript.js"></script>
+		<script type="text/javascript" src="../assets-helpbook/run_helpscript.js"></script>
         <link id="helpviewer-handler-helper" href="../assets-helpbook/helpviewer-handler-helper.scpt" />
         <script type="text/javascript" src="../assets-helpbook/helpviewer-handler-enable.js"></script>
 		<link href="../" id="HelpBookRoot" />
@@ -36,15 +36,12 @@
 <a href="../assets-helpbook/setClipboard.scpt" onclick="return runHelpScriptWithInnerText(this)">
 <img src="../assets-helpbook/Clipboard24.png" alt="copy to clipboard" align="right" />
 </a></p>
-<p>Finder で選択項目が無い場合、 ファイル/フォルダ選択ダイアログを開くかどうか。</p>
-
-
-<p>false を設定すると、ファイル/フォルダ選択ダイアログを開きません。デフォルトでは　true が設定されています。</p>
+<p>Whether open panel will be opened or not when threre are not items matched with the conditions in selection in Finder.</p>
 <div class="subHeading">
 Parameters
 </div>
 <ul>
-<li>a_bool (boolean) : ファイル/フォルダ選択ダイアログを開くかどうか。</li>
+<li>a_bool (boolean) : If false is given, open panel is not opened. The default value is true.</li>
 </ul>
 <div class="subHeading">
 Result
